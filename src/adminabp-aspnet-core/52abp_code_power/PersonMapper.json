@@ -1,0 +1,1 @@
+{"EntityKeyName":"Person","BaseClassName":"ClassMapper<Person>","BaseClassDtoName":"ClassMapperDto<Person>","BaseClassNameList":"","Name":"PersonMapper","LowerName":"personMapper","SplitName":"person","NameSplit":["person"],"Namespace":"adminAbp.AbpDapper.Person","Properties":[]}

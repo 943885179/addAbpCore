@@ -1,0 +1,1 @@
+{"EntityKeyName":"int","BaseClassName":"AbpModule","BaseClassDtoName":"AbpModuleDto","BaseClassNameList":"","Name":"adminAbpDapperModule","LowerName":"adminAbpDapperModule","SplitName":"admin-abp-dapper","NameSplit":["admin","abp","dapper"],"Namespace":"adminAbp.AbpDapper","Properties":[]}

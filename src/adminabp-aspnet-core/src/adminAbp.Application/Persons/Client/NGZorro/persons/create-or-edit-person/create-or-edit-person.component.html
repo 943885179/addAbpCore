@@ -1,0 +1,74 @@
+
+
+<form nz-form #validateForm="ngForm" (ngSubmit)="submitForm()" nzLayout="horizontal" autocomplete="off">
+    <!-- 模态框头部 -->
+    <div class="modal-header">
+        <div class="modal-title">
+            <i class="anticon anticon-medicine-box mr-sm"></i>
+            <span *ngIf="entity.id">{{l('Edit')}}</span>
+            <span *ngIf="!entity.id">{{l('Create')}}</span>
+        </div>
+    </div>
+    <!-- 模态框内容 -->
+    <fieldset>
+        <!-- 提示信息 -->
+        <!-- <nz-alert nzType="info" nzCloseable [nzShowIcon]="true" nzMessage="l('我想提示点什么内容给你说')"></nz-alert> -->
+            <nz-form-item nz-row>
+                    <nz-form-label nz-col [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">{{l('name')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="name" #name="ngModel"
+                                   [(ngModel)]="entity.name"
+                                   [placeholder]="l('name')"  required  maxlength='50' >
+
+                            <!-- 校验 -->
+                            <nz-form-explain *ngIf="name.control.dirty&&name.control.errors">
+<ng-container *ngIf="name.control.hasError('maxlength')">{{l('超过最大长度')50}}</ng-container>                                                                <ng-container *ngIf="name.control.hasError('required')">{{l('CanNotNull')}}</ng-container>
+                            </nz-form-explain>
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="address">{{l('address')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="address" #address="ngModel"
+                                   [(ngModel)]="entity.address"
+                                   [placeholder]="l('address')"  maxlength='80' >
+
+                            <!-- 校验 -->
+                            <nz-form-explain *ngIf="address.control.dirty&&address.control.errors">
+<ng-container *ngIf="address.control.hasError('maxlength')">{{l('超过最大长度')80}}</ng-container>                                                                
+                            </nz-form-explain>
+
+                </nz-form-control>
+            </nz-form-item>
+            <nz-form-item nz-row>
+                    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="emalill">{{l('emalill')}}</nz-form-label>
+                <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                            <input nz-input name="emalill" #emalill="ngModel"
+                                   [(ngModel)]="entity.emalill"
+                                   [placeholder]="l('emalill')"  maxlength='200' >
+
+                            <!-- 校验 -->
+                            <nz-form-explain *ngIf="emalill.control.dirty&&emalill.control.errors">
+<ng-container *ngIf="emalill.control.hasError('maxlength')">{{l('超过最大长度')200}}</ng-container>                                                                
+                            </nz-form-explain>
+
+                </nz-form-control>
+            </nz-form-item>
+
+    </fieldset>
+    <!-- 模态框底部 -->
+    <div class="modal-footer">
+        <button nz-button [nzType]="'default'" type="button" (click)="close()" [disabled]="saving">
+            <i class="anticon anticon-close-circle-o"></i> {{l("Cancel")}}
+        </button>
+        <button nz-button [nzType]="'primary'" type="submit" [disabled]="!validateForm.form.valid|| saving" [nzLoading]="saving">
+            <i class="anticon anticon-save" *ngIf="!saving"></i> {{l("Save")}}
+        </button>
+    </div>
+</form>
+
+
+
+
+

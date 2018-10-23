@@ -1,0 +1,9 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# IDEs and editors
+.vs/
+obj/
+bin/
+adminabp-aspnet-core/src/adminAbp.Web.Host/App_Data/Logs/
+adminabp-aspnet-core/src/adminAbp.Web.Mvc/App_Data/Logs/
+adminabp-aspnet-core/src/adminAbp.Migrator/Logs/Logs.txt

@@ -1,0 +1,83 @@
+<form nz-form #validateForm="ngForm" (ngSubmit)="submitForm()" nzLayout="horizontal" autocomplete="off">
+    <!-- 模态框头部 -->
+    <div class="modal-header">
+        <div class="modal-title">
+            <i class="anticon anticon-medicine-box mr-sm"></i>
+            <span *ngIf="entity.id">{{l('Edit')}}</span>
+            <span *ngIf="!entity.id">{{l('Create')}}</span>
+        </div>
+    </div>
+    <!-- 模态框内容 -->
+    <fieldset>
+        <!-- 提示信息 -->
+        <!-- <nz-alert nzType="info" nzCloseable [nzShowIcon]="true" nzMessage="l('我想提示点什么内容给你说')"></nz-alert> -->
+        <nz-form-item nz-row>
+            <nz-form-label nz-col [nzSm]="6" [nzXs]="24" nzRequired nzFor="number">{{l('Number')}}</nz-form-label>
+            <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                <input nz-input name="number" #number="ngModel" [(ngModel)]="entity.number" [placeholder]="l('Number')"
+                    required maxlength='20' minlength="5">
+
+                <!-- 校验 -->
+                <nz-form-explain *ngIf="number.control.dirty&&number.control.errors">
+                    <ng-container *ngIf="number.control.hasError('maxlength')"></ng-container>
+                    <ng-container *ngIf="number.control.hasError('required')">数据不能为空</ng-container>
+                </nz-form-explain>
+
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="type">{{l('Type')}}</nz-form-label>
+            <nz-form-control nz-col [nzSm]="14" [nzXs]="24">
+                <!-- <input nz-input name="type" #type="ngModel" [(ngModel)]="entity.type" [placeholder]="l('Type')"> -->
+                <!-- <nz-select [(ngModel)]="entity.type" name="type" nzPlaceHolder="l('Type')" nzAllowClear>
+                    <nz-option nzValue="1" nzLabel="1"></nz-option>
+                    <nz-option nzValue="2" nzLabel="2"></nz-option>
+                    <nz-option nzValue="3" nzLabel="3"></nz-option>
+                </nz-select> -->
+                <nz-radio-group [(ngModel)]="type" name="type">
+                    <label nz-radio nzValue="0">{{l('MobilePhone')}}</label>
+                    <label nz-radio nzValue="1">{{l('HomePhone')}}</label>
+                    <label nz-radio nzValue="2">{{l('CompanyPhone')}}</label>
+                </nz-radio-group>
+
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row *ngIf="entity.id==null">
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="personId">{{l('PersonId')}}</nz-form-label>
+            <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                <!-- <input nz-input name="personId" #personId="ngModel" [(ngModel)]="entity.personId" [placeholder]="l('PersonId')"> -->
+                <nz-select [(ngModel)]="entity.personId" #personId="ngModel" name="personId" nzPlaceHolder="l('PersonId')"
+                    nzAllowClear>
+                    <nz-option *ngFor="let item of persons" [nzLabel]="item.name" [nzValue]="item.id">
+                    </nz-option>
+                </nz-select>
+
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row *ngIf="entity.id!=null">
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="person">{{l('Person')}}</nz-form-label>
+            <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback>
+                <input nz-input name="person" #person="ngModel" [(ngModel)]="entity.person.name" [placeholder]="l('Person')"
+                    readonly>
+            </nz-form-control>
+        </nz-form-item>
+        <!-- <nz-form-item nz-row>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="creationTime">{{l('CreationTime')}}</nz-form-label>
+            <nz-form-control nz-col [nzSm]="14" [nzXs]="24" nzHasFeedback >
+                <nz-date-picker name="creationTime" #creationTime="ngModel" [(ngModel)]="entity.creationTime"></nz-date-picker>
+
+
+            </nz-form-control>
+        </nz-form-item> -->
+
+    </fieldset>
+    <!-- 模态框底部 -->
+    <div class="modal-footer">
+        <button nz-button [nzType]="'default'" type="button" (click)="close()" [disabled]="saving">
+            <i class="anticon anticon-close-circle-o"></i> {{l("Cancel")}}
+        </button>
+        <button nz-button [nzType]="'primary'" type="submit" [disabled]="!validateForm.form.valid|| saving" [nzLoading]="saving">
+            <i class="anticon anticon-save" *ngIf="!saving"></i> {{l("Save")}}
+        </button>
+    </div>
+</form>

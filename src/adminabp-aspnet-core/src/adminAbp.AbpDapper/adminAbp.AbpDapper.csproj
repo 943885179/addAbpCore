@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Abp.Dapper" Version="3.9.0" />
+    <PackageReference Include="Abp.EntityFramework.Common" Version="3.9.0" />
+    <PackageReference Include="Abp.EntityFrameworkCore" Version="3.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\adminAbp.Application\adminAbp.Application.csproj" />
+    <ProjectReference Include="..\adminAbp.Core\adminAbp.Core.csproj" />
+  </ItemGroup>
+
+</Project>
