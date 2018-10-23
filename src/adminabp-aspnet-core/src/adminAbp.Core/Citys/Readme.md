@@ -94,3 +94,21 @@ todo: 目前优先完成SPA 以angular 为主，
 
 【52ABP .NET CORE 实战群】：633751348 (免费)
 [![52ABP .NET CORE 实战群](http://pub.idqqimg.com/wpa/images/group.png)](https://jq.qq.com/?_wv=1027&k=5pWtBvu)
+有些项目开发时先建立数据库，再用codefirst来书写entity和EntityConfiguration，比较耗费功夫。
+
+1、在vs2017中新建个asp.net core的web项目，或者其他项目均可。
+
+2、打开nuget管理器命令行。执行以下3条命令安装相关功能。
+
+Install-Package Microsoft.EntityframeworkCore.SqlServer
+Install-Package Microsoft.EntityframeworkCore.Tools
+Install-Package Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+3、执行这一命令。后面是数据库连接字符串
+
+Scaffold-DbContext -Force “Data Source=172.21.21.100; Initial Catalog=AffairsHall; Pooling=True; UID=sa;PWD=sql2008;connect Timeout=10” Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models/DataModels
+
+4、此时会在model文件夹下会生成数据库中所有的实体和dbcontext文件。
+
+add-migration 描述 -context:db
+update-database ....

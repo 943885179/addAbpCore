@@ -1,7 +1,14 @@
 <page-header [title]="l('PhoneNumbers')" [desc]="l('PhoneNumbersHeaderInfo')"></page-header>
 
-<nz-card [nzBordered]="false">
-
+<nz-card [nzBordered]="false" [nzExtra]="extraTpl">
+    <ng-template #extraTpl>
+        <button nz-button (click)="refresh()" nzShape="circle">
+            <i class="anticon anticon-reload"></i>
+        </button>
+        <button nz-button (click)="createOrEdit()" nzShape="circle" nzType="primary">
+            <i class="anticon anticon-plus"></i>
+        </button>
+    </ng-template>
     <div class="mb-md">
         <!-- 模糊搜索框 -->
         <nz-row nzGutter="8">
@@ -27,8 +34,6 @@
         <!-- 操作常规按钮部分 如： 添加、批量删除、导出Excel表 -->
         <nz-row nzGutter="8">
             <nz-col nzMd="20" nzSm="12" class="btn-gutter">
-
-
                 <button nz-button [nzType]="'primary'" *ngIf="isGranted('Pages.PhoneNumber.Create')" (click)="createOrEdit()">
                     <i class="anticon anticon-plus"></i>
                     <span>
